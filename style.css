@@ -1,0 +1,14 @@
+body {
+  margin: 0 auto;
+  background-color: #288d26;
+}
+
+.car {
+  width: 400px;
+  height: 300px;
+  margin-top: 10px;
+}
+
+.car img {
+  width: 50%;
+}
