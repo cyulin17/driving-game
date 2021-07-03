@@ -1,4 +1,5 @@
 var $car = document.querySelector('img');
+var $carBox = document.querySelector('.car');
 
 var carDirections = [
   {
@@ -20,7 +21,6 @@ var carDirections = [
     key: 'ArrowUp',
     direction: 'up'
   }
-
 ];
 
 document.addEventListener('keydown', function (e) {
@@ -31,4 +31,22 @@ document.addEventListener('keydown', function (e) {
     }
   }
 
+});
+
+var carLocation = {
+  x: 0,
+  y: 0
+};
+
+function carMove() {
+  carLocation.x += 10;
+  $carBox.style.left = carLocation.x + 'px';
+
+}
+
+document.addEventListener('keydown', function (e) {
+
+  if (e.key === ' ') {
+    setInterval(carMove, 16);
+  }
 });
