@@ -35,7 +35,8 @@ document.addEventListener('keydown', function (e) {
 
 var carLocation = {
   x: 0,
-  y: 0
+  y: 0,
+  carStarted: false
 };
 
 function carMove() {
@@ -44,9 +45,16 @@ function carMove() {
 
 }
 
+var timer;
 document.addEventListener('keydown', function (e) {
 
   if (e.key === ' ') {
-    setInterval(carMove, 16);
+    if (carLocation.carStarted === false) {
+      carLocation.carStarted = true;
+      timer = setInterval(carMove, 16);
+    } else {
+      carLocation.carStarted = false;
+      clearInterval(timer);
+    }
   }
 });
