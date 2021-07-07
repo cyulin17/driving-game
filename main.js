@@ -21,7 +21,6 @@ var carDirections = [
     key: 'ArrowUp',
     direction: 'up'
   }
-
 ];
 
 document.addEventListener('keydown', function (e) {
