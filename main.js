@@ -29,8 +29,15 @@ document.addEventListener('keydown', function (e) {
     if (e.key === carDirections[i].key) {
       $car.className = carDirections[i].direction;
     }
-  }
 
+    if (carLocation.carStarted === false) {
+      carLocation.carStarted = true;
+      timer = setInterval(carSteer, 16);
+    } else {
+      carLocation.carStarted = false;
+      clearInterval(timer);
+    }
+  }
 });
 
 var carLocation = {
@@ -39,22 +46,39 @@ var carLocation = {
   carStarted: false
 };
 
-function carMove() {
-  carLocation.x += 10;
-  $carBox.style.left = carLocation.x + 'px';
-
-}
-
 var timer;
 document.addEventListener('keydown', function (e) {
 
   if (e.key === ' ') {
     if (carLocation.carStarted === false) {
       carLocation.carStarted = true;
-      timer = setInterval(carMove, 16);
+      timer = setInterval(carSteer, 16);
     } else {
       carLocation.carStarted = false;
       clearInterval(timer);
     }
   }
 });
+
+function carSteer() {
+
+  if ($car.className === 'right') {
+    carLocation.x += 10;
+    $carBox.style.left = carLocation.x + 'px';
+  }
+
+  if ($car.className === 'up') {
+    carLocation.y -= 10;
+    $carBox.style.top = carLocation.y + 'px';
+  }
+
+  if ($car.className === 'left') {
+    carLocation.x -= 10;
+    $carBox.style.left = carLocation.x + 'px';
+  }
+
+  if ($car.className === 'down') {
+    carLocation.y += 10;
+    $carBox.style.top = carLocation.y + 'px';
+  }
+}
